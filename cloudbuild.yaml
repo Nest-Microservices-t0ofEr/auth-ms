@@ -1,6 +1,20 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "southamerica-west1-docker.pkg.dev/tienda-microservices-452915/image-registry/auth-ms",
+        "-f",
+        "dockerfile.prod",
+        "--platform=linux/amd64",
+        ".",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "southamerica-west1-docker.pkg.dev/tienda-microservices-452915/image-registry/auth-ms",
+      ]
 options:
   logging: CLOUD_LOGGING_ONLY
-  # Esta opción permite que los logs se envíen solo a Google Cloud Logging
-
-# Si deseas usar un bucket para los logs, puedes configurar algo así:
-# logsBucket: gs://mi-bucket-de-logs
