@@ -1,0 +1,6 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  # Esta opción permite que los logs se envíen solo a Google Cloud Logging
+
+# Si deseas usar un bucket para los logs, puedes configurar algo así:
+# logsBucket: gs://mi-bucket-de-logs
