@@ -21,6 +21,7 @@ export class AuthService {
         try {
             const user = await this.prisma.user.findUnique({where: {email}});
             if(user) {
+                console.log('Usuario ya existe');
                 throw new RpcException({
                     error: 400,
                     message: 'User already exists'
@@ -38,6 +39,7 @@ export class AuthService {
                 token: await this.signJwt(rest),
             };
         } catch (error) {
+            console.log('Error: ' + error)
             throw new RpcException({
                 code: 400,
                 message: error.message,
@@ -49,6 +51,7 @@ export class AuthService {
         try {
             const user = await this.prisma.user.findUnique({where: {email}});
             if(!user) {
+                console.log('No hay usuarios en login');
                 throw new RpcException({
                     error: 400,
                     message: 'User does not exists',
@@ -57,6 +60,7 @@ export class AuthService {
 
             const isPasswordMatch = bcrypt.compareSync(password, user.password);
             if(!isPasswordMatch) {
+                console.log('Password invalid');
                 throw new RpcException({
                     error: 400,
                     message: 'User/Password not valid',
@@ -69,6 +73,7 @@ export class AuthService {
                 token: await this.signJwt(rest),
             };
         } catch (error) {
+            console.log('Error:' + error);
             throw new RpcException({
                 code: 400,
                 message: error.message,
