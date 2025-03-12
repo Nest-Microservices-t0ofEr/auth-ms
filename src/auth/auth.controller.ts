@@ -13,12 +13,10 @@ export class AuthController {
   ) {}
   @MessagePattern('auth.register.user')
   registerUser(@Payload() registerUserDto: RegisterUserDto) {
-    console.log('Payload' + registerUserDto);
     return this.authService.registerUser(registerUserDto);
   }
   @MessagePattern('auth.login.user')
   loginUser(@Payload() loginUserDto: LoginUserDto) {
-    console.log('Payload' + loginUserDto);
     return this.authService.loginUser(loginUserDto);
   }
   
